@@ -12,7 +12,7 @@ export default function App() {
       <h3>Contacts</h3>
       <p>filter via name</p>
       {/* <Filter /> */}
-      {/* <ListContacts /> */}
+      <ListContacts />
     </div>
   )
 }

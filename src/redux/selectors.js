@@ -1,3 +1,1 @@
-export const getContactsData = store => {
-    return store.contactsReducer.contacts;
-  };
+export const getContacts= state => state.contacts.entities

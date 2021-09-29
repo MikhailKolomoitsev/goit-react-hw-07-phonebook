@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import { createReducer } from '@reduxjs/toolkit'
-import actions from './actions'
 import {
   getAllContactsRequest,
   getAllContactsSuccess,
@@ -12,18 +11,18 @@ const entities = createReducer([], {
     return action.payload
   },
 })
-const isLoading=createReducer(false, {
-  [getAllContactsRequest]:()=>true,
-  [getAllContactsSuccess]:()=>false,
-  [getAllContactsError]:()=>false
+const isLoading = createReducer(false, {
+  [getAllContactsRequest]: () => true,
+  [getAllContactsSuccess]: () => false,
+  [getAllContactsError]: () => false,
 })
 
-const error=createReducer(null, {
-  [getAllContactsError]:(_, action)=>action.payload,
-  [getAllContactsRequest]:()=>null,
+const error = createReducer(null, {
+  [getAllContactsError]: (_, action) => action.payload,
+  [getAllContactsRequest]: () => null,
 })
-export  default combineReducers({
+export default combineReducers({
   entities,
   isLoading,
   error,
-});
+})
