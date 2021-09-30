@@ -1,28 +1,48 @@
 import { combineReducers } from 'redux'
-import { createReducer } from '@reduxjs/toolkit'
-import {
-  getAllContactsRequest,
-  getAllContactsSuccess,
-  getAllContactsError,
-} from './actions'
+import { createReducer, createSlice } from '@reduxjs/toolkit'
+import { fetchContacts } from './operations'
 
-const entities = createReducer([], {
-  [getAllContactsSuccess]: (_, action) => {
-    return action.payload
-  },
-})
-const isLoading = createReducer(false, {
-  [getAllContactsRequest]: () => true,
-  [getAllContactsSuccess]: () => false,
-  [getAllContactsError]: () => false,
+// const entities = createReducer([], {
+//   [fetchContacts.fulfilled]: (_, action) => {
+//     return action.payload
+//   },
+// })
+// const isLoading = createReducer(false, {
+//   [fetchContacts.pending]: () => true,
+//   [fetchContacts.fulfilled]: () => false,
+//   [fetchContacts.rejected]: () => false,
+// })
+
+// const error = createReducer(null, {
+//   [fetchContacts.rejected]: (_, action) => action.payload,
+//   [fetchContacts.pending]: () => null,
+// })
+// export default combineReducers({
+//   entities,
+//   isLoading,
+//   error,
+// })
+
+const contactsSlice=createSlice({
+  name: 'contacts', 
+  initialState: {entities:[],isLoading: false, error: null },
+  reducers:{},
+  extraReducers: {
+    [fetchContacts.fulfilled]:(state, action)=>{
+      // return {
+      //   ...state,
+      //   entities:action.payload, 
+      // }IMMER:
+      state.entities=action.payload
+    },
+    [fetchContacts.pending]:state=>{
+      // return {
+      //   ...state,
+      //   isLoading:true
+      // }
+      state.isLoading=true //IMMER works
+    }
+  }
 })
 
-const error = createReducer(null, {
-  [getAllContactsError]: (_, action) => action.payload,
-  [getAllContactsRequest]: () => null,
-})
-export default combineReducers({
-  entities,
-  isLoading,
-  error,
-})
+export default contactsSlice.reducer

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import actions from '../../redux/actions'
+import actions from 'redux/actions'
 
 export default function Form({ onSubmit }) {
   const [name, setName] = useState('')

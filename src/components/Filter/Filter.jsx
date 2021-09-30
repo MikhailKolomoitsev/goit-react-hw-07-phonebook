@@ -2,7 +2,7 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import actions from "../../redux/actions";
+import actions from "redux/actions";
 
 export default  function Filter ({ value, onChange }){
   const id = uuidv4();

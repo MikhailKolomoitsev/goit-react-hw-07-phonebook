@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import {selectors, operations} from '../../redux'
+import * as operations from 'redux/operations'
+import * as selectors from 'redux/selectors'
 import { useSelector, useDispatch } from "react-redux";
 
 export default function ListContacts() {
@@ -13,7 +14,6 @@ export default function ListContacts() {
    const contacts=useSelector(selectors.getContacts)
 
   return (<ul>
-    <h2>At least</h2>
     {contacts.length>0 && contacts.map(({ id, name, number }) => (
       <li key={id}>
         {name} {number}
