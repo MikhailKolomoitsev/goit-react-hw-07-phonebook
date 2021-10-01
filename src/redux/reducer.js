@@ -25,8 +25,10 @@ import { fetchContacts } from './operations'
 
 const contactsSlice=createSlice({
   name: 'contacts', 
-  initialState: {entities:[],isLoading: false, error: null },
-  reducers:{},
+  initialState: {entities:[],isLoading: false, error: null, filter:'' },
+  reducers:{
+      filter: (_, { payload }) => payload,
+  },
   extraReducers: {
     [fetchContacts.fulfilled]:(state, action)=>{
       // return {

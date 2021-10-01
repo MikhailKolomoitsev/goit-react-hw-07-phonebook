@@ -2,10 +2,18 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import actions from "redux/actions";
+import {changeFilter} from "redux/actions";
+import { useSelector,useDispatch} from "react-redux";
+import { getFilter } from "redux/selectors";
 
-export default  function Filter ({ value, onChange }){
+export default  function Filter (){
   const id = uuidv4();
+  const dispatch=useDispatch()
+  const value=useSelector(getFilter)
+  const onChange=event=>{
+    event.preventDefault()
+    dispatch(changeFilter(event.target.value))
+  }
   return (
     <>
       <label htmlFor={id}>   </label>

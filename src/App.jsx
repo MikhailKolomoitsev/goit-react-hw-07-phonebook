@@ -11,7 +11,7 @@ export default function App() {
       <Form />
       <h3>Contacts</h3>
       <p>filter via name</p>
-      {/* <Filter /> */}
+      <Filter />
       <ListContacts />
     </div>
   )
