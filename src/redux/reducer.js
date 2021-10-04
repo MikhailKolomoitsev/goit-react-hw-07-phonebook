@@ -27,9 +27,10 @@ const contactsSlice=createSlice({
   name: 'contacts', 
   initialState: {entities:[],isLoading: false, error: null, filter:'' },
   reducers:{
-      filter: (_, { payload }) => payload,
+      
   },
   extraReducers: {
+    filter: (_, { payload }) => payload,
     [fetchContacts.fulfilled]:(state, action)=>{
       // return {
       //   ...state,

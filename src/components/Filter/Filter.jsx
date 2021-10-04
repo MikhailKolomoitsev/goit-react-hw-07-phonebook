@@ -17,7 +17,7 @@ export default  function Filter (){
   return (
     <>
       <label htmlFor={id}>   </label>
-      <input id={id} type="text" value={value} onChange={onChange} />
+      <input id={id} type="text"  onChange={onChange} />
     </>
   );
 };

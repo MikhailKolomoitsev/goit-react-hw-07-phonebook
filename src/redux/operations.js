@@ -22,6 +22,7 @@ export const fetchContacts=createAsyncThunk(
   }
 )
 
+
 // export const fetchContacts = () => async dispatch => {
 //   dispatch(getAllContactsRequest());
 //   try {
