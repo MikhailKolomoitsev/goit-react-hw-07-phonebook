@@ -12,14 +12,18 @@ export default  function Filter (){
   return (
     <>
       <label htmlFor={id}>   </label>
-      <input id={id} type="text"  onChange={()=>{}} />
+      <input id={id}
+       type="text"  
+       onChange={(e)=>{
+         dispatch(changeFilter(e.target.value))
+       }} />
     </>
   );
 };
 
 Filter.propTypes = {
   value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 // const mapStateToProps = (state) => ({

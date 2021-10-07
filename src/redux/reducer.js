@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { createReducer, createSlice } from '@reduxjs/toolkit'
 import { fetchContacts } from './operations'
+import { changeFilter } from './actions'
 const entities = createReducer([], {
   [fetchContacts.fulfilled]: (_, action) => {
     return action.payload
@@ -15,6 +16,9 @@ const isLoading = createReducer(false, {
 const error = createReducer(null, {
   [fetchContacts.rejected]: (_, action) => action.payload,
   [fetchContacts.pending]: () => null,
+})
+export const filter=createReducer('',{
+  [changeFilter]: (_, {payload})=>payload
 })
 export default combineReducers({
   entities,

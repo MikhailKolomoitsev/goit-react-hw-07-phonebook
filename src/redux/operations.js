@@ -16,11 +16,15 @@ export const fetchContacts=createAsyncThunk(
       const contacts =await axios.get('/contacts')
       return contacts.data
     } catch (error) {
-      return rejectWithValue(error)
+      return rejectWithValue(error.message)
     }
    
   }
 )
+
+export const addContact=createAsyncThunk(
+)
+
 
 
 // export const fetchContacts = () => async dispatch => {

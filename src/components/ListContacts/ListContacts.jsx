@@ -11,7 +11,7 @@ export default function ListContacts() {
    useEffect(() => {
     dispatch(operations.fetchContacts())
    }, [dispatch])
-   const contacts=useSelector(selectors.getContacts)
+   const contacts=useSelector(selectors.getFilteredContacts)
 
   return (<ul>
     {contacts.length>0 && contacts.map(({ id, name, number }) => (
