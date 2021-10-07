@@ -1,9 +1,9 @@
 import axios from 'axios';
-// import {
-//     getAllContactsRequest,
-//     getAllContactsSuccess,
-//     getAllContactsError,
-// } from './actions';
+import {
+    getAllContactsRequest,
+    getAllContactsSuccess,
+    getAllContactsError,
+} from './actions';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const URL = 'http://localhost:4343';
