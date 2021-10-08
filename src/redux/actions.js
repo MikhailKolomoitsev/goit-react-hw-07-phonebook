@@ -1,22 +1,11 @@
-import { createAction } from "@reduxjs/toolkit";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
+import { createAction } from "@reduxjs/toolkit"
 
-const URL = 'http://localhost:4343';
-axios.defaults.baseURL = URL;
-
-export const addContact=({name, number})=>dispatch=>{
-    const contact={
-        id: uuidv4(),
-        name,
-        number
-    }
-
-    dispatch({type: 'addContact/AddContactRequest'})
-
-    axios
-    .post('/contacts', contact)
-    .then(({data})=>dispatch({type: 'contacts/addContactSuccess', payload:data}))
-    .catch(error=>dispatch({type: 'contacts/addContactError', payload:error.message}))
-}
 export const changeFilter=createAction('contacts/changeFilter')
+
+export const AddContactRequest=createAction('contacts/AddContactRequest')
+export const addContactSuccess=createAction('contacts/addContactSuccess')
+export const addContactError=createAction('contacts/addContactError')
+
+export const deleteContactRequest=createAction('contacts/deleteContactRequest')
+export const deleteContactSuccess=createAction('contacts/deleteContactSuccess')
+export const deleteContactError=createAction('contacts/deleteContactError')

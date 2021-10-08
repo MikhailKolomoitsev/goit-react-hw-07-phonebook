@@ -2,22 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import * as operations from 'redux/operations'
+import {fetchContacts, deleteContact} from 'redux/operations'
 import * as selectors from 'redux/selectors'
 import { useSelector, useDispatch } from "react-redux";
 
-export default function ListContacts() {
+function ListContacts({onClick}) {
    const dispatch = useDispatch()
    useEffect(() => {
-    dispatch(operations.fetchContacts())
+    dispatch(fetchContacts())
    }, [dispatch])
+
    const contacts=useSelector(selectors.getFilteredContacts)
 
   return (<ul>
     {contacts.length>0 && contacts.map(({ id, name, number }) => (
       <li key={id}>
         {name} {number}
-        <button type="button">
+        <button type="button" id={id} onClick={(e)=>
+          onClick(e.target.id)
+          }>
           delete
         </button>
       </li>
@@ -34,18 +37,8 @@ export default function ListContacts() {
 //   onClick: PropTypes.func.isRequired,
 // };
 
-// const filteredContactList = (fullList, filter) => {
-//   const filterValueNorm = filter.toLowerCase();
-//   return fullList.filter((contact) =>
-//     contact.name.toLowerCase().includes(filterValueNorm)
-//   );
-// }
 
-// const mapStateToProps = ({ contacts: { items, filter } }) => ({
-//   contacts: filteredContactList(items, filter)
-// })
-// const mapDispatchTooProps = dispatch => ({
-//   onClick: (id) => dispatch(ations.deleteContact(id))
-// })
-
-// export default connect(mapStateToProps, mapDispatchTooProps)(ListContacts)
+const mapDispatchToProrps = (dispatch) => ({
+  onClick: (id) => dispatch(deleteContact(id)),
+})
+export default connect(null, mapDispatchToProrps)(ListContacts)

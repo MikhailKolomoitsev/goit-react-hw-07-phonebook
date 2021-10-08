@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import actions from 'redux/actions'
+import {addContact} from 'redux/operations'
 
-export default function Form({ onSubmit }) {
+ function Form({ onSubmit }) {
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
   const handleNameChange = (e) => setName(e.currentTarget.value)
@@ -43,7 +43,7 @@ export default function Form({ onSubmit }) {
     </form>
   )
 }
-// const mapDispatchToProrps = (dispatch) => ({
-//   onSubmit: (obj) => dispatch(actions.addContact(obj)),
-// })
-// export default connect(null, mapDispatchToProrps)(Form)
+const mapDispatchToProrps = (dispatch) => ({
+  onSubmit: (obj) => dispatch(addContact(obj)),
+})
+export default connect(null, mapDispatchToProrps)(Form)
