@@ -15,7 +15,7 @@ const entities = createReducer([], {
     return action.payload
   },
   [addContactSuccess]: (state, {payload}) => [...state, payload],
-  [deleteContactRequest]:(state, {payload})=>state.filter(({id})=>id!==payload)
+  [deleteContactSuccess]:(state, {payload})=>state.filter(({id})=>id!==payload)
 })
 const isLoading = createReducer(false, {
   [fetchContacts.pending]: () => true,
