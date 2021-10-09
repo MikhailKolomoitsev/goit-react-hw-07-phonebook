@@ -1,29 +1,23 @@
 import { combineReducers } from 'redux'
-import { createReducer, createSlice } from '@reduxjs/toolkit'
+import { createReducer } from '@reduxjs/toolkit'
 import { fetchContacts } from './operations'
 import { changeFilter } from './actions'
-import {
-  AddContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError
-} from './actions'
+import { addContact, deleteContact } from './operations'
 const entities = createReducer([], {
   [fetchContacts.fulfilled]: (_, action) => {
     return action.payload
   },
-  [addContactSuccess]: (state, {payload}) => [...state, payload],
-  [deleteContactSuccess]:(state, {payload})=>state.filter(({id})=>id!==payload)
+  [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+  [deleteContact.fulfilled]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 })
 const isLoading = createReducer(false, {
   [fetchContacts.pending]: () => true,
   [fetchContacts.fulfilled]: () => false,
   [fetchContacts.rejected]: () => false,
-  [AddContactRequest]:()=>true,
-  [addContactSuccess]:()=>false,
-  [addContactError]:()=>false,
+  [addContact.pending]: () => true,
+  [addContact.fulfilled]: () => false,
+  [addContact.rejected]: () => false,
 })
 
 const error = createReducer(null, {
@@ -38,4 +32,3 @@ export default combineReducers({
   isLoading,
   error,
 })
-

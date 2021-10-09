@@ -1,12 +1,4 @@
 import axios from 'axios';
-import {
-  AddContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess, 
-  deleteContactError
-} from './actions';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const URL = 'http://localhost:4343';
@@ -25,23 +17,32 @@ export const fetchContacts=createAsyncThunk(
    
   }
 )
+export const addContact=createAsyncThunk(
+  'contacts/addContact',
+  async ({name, number}, {rejectWithValue})=>{
+    try {
+      const contact= await axios.post('/contacts', {name, number})
+      return contact.data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+})
 
-export const addContact=({name, number})=>dispatch=>{
-  const contact={
-      name,
-      number
-  }
-  dispatch(AddContactRequest())
-  axios
-  .post('/contacts', contact)
-  .then(({data})=>dispatch(addContactSuccess(data)))
-  .catch(error=>dispatch(addContactError(error.message)))
-}
+export const deleteContact=createAsyncThunk(
+  'contacts/deleteContact',
+  async (contactID, {rejectWithValue})=>{
+    try {
+      const contact= await axios.delete(`contacts/${contactID}`)
+      return contactID
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }}
+)
 
-export const deleteContact=contactID=>dispatch=>{
-dispatch(deleteContactRequest())
-axios
-.delete(`contacts/${contactID}`)
-.then(()=>dispatch(deleteContactSuccess(contactID)))
-.catch(error=>dispatch(deleteContactError(error.message)))
-}
+// export const deleteContact=contactID=>dispatch=>{
+// dispatch(deleteContactRequest())
+// axios
+// .delete(`contacts/${contactID}`)
+// .then(()=>dispatch(deleteContactSuccess(contactID)))
+// .catch(error=>dispatch(deleteContactError(error.message)))
+// }
